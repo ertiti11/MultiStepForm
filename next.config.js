@@ -4,7 +4,7 @@ const nextConfig = {
     serverActions: true,
   },
   reactStrictMode: true,
-  output: 'export',
+  output: 'standalone',
   eslint: {
     ignoreDuringBuilds: true,
   },

@@ -82,9 +82,9 @@ export default function Home() {
     try {
       setLoading(true);
       console.log(data)
-      // const emailResponse = await sendEmail(data);
-      // console.log(emailResponse)
-      setLoading(false);
+      const emailResponse = await sendEmail(data);
+      console.log(emailResponse)
+
 
       toast.success(
         language === "es"
@@ -429,7 +429,6 @@ export default function Home() {
                 </div>
               </div>
             )}
-            
 
             {step === 5 && (
               <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4">
@@ -537,28 +536,11 @@ export default function Home() {
                   )}
                 </Button>
               )}
-              {step === 6 && (
-                <div className="text-center space-y-6">
-                  <h2 className="text-2xl font-serif text-[#4A4A4A]">
-                    {texts.thankYou[language]}
-                  </h2>
-                  <p className="text-lg text-[#6B6B6B]">
-                    {texts.contactSoon[language]}
-                  </p>
-                  <Button
-                    onClick={() => setStep(1)}
-                    className="mt-4 bg-[#A4B4A4] hover:bg-[#8A9B8A] text-white px-4 py-2 rounded-lg"
-                  >
-                    {texts.backToStart[language]}
-                  </Button>
-                </div>
-              )}
-
-
+              
             </div>
-          </form >
-        </div >
-      </div >
-    </div >
+          </form>
+        </div>
+      </div>
+    </div>
   );
 }
