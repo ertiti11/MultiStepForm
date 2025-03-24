@@ -10,15 +10,16 @@ export const sendEmail = async (data) => {
     await resend.emails.send({
       from: 'altamirano floristas <info@altamiranofloristas.com>',
       to: 'info@altamiranofloristas.com',
-      subject: 'Nueva Solicitud de Flores para Boda / New Wedding Flower Request',
+      subject: 'Tienes una nueva Solicitud de Flores para Boda!',
       html: `
-        <h2>Detalles de la Solicitud / Request Details:</h2>
-        <p><strong>Nombres / Names:</strong> ${data.partnerNames}</p>
-        <p><strong>Fecha / Date:</strong> ${data.weddingDate}</p>
-        <p><strong>Lugar / Venue:</strong> ${data.venueLocation}</p>
-        <p><strong>Tipo de Lugar / Venue Type:</strong> ${data.venueType}</p>
+        <h2>Detalles de la Solicitud:</h2>
+        <p><strong>Nombres:</strong> ${data.partnerNames}</p>
+        <p><strong>Fecha:</strong> ${data.weddingDate}</p>
+        <p><strong>Lugar:</strong> ${data.venueLocation}</p>
+        <p><strong>Tipo de Lugar:</strong> ${data.venueType}</p>
+        <p><strong>Invitados:</strong> ${data.guestCount}</p>
         <p><strong>Email:</strong> ${data.email}</p>
-        <p><strong>Teléfono / Phone:</strong> ${data.phone}</p>
+        <p><strong>Teléfono:</strong> ${data.phone}</p>
       `,
     });
     console.log("Correo enviado con éxito");

@@ -72,7 +72,7 @@ export default function Home() {
   const onSubmit = async (data: FormData) => {
     try {
       setLoading(true);
-
+      console.log(data)
       const emailResponse = await sendEmail(data);
       console.log(emailResponse)
 
@@ -337,7 +337,6 @@ export default function Home() {
                 />
               </div>
             )}
-
             {step === 3 && (
               <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4">
                 <div className="space-y-4">
@@ -364,7 +363,7 @@ export default function Home() {
                   </Label>
                   <RadioGroup
                     defaultValue="indoor"
-                    onValueChange={(value) => setValue('venueType', value as "indoor" | "outdoor" | "both")}
+                    {...register("venueType", { required: true })} // Registrar venueType
                     className="space-y-3"
                   >
                     <div className="flex items-center space-x-3">
@@ -380,9 +379,15 @@ export default function Home() {
                       <Label htmlFor="both" className="text-[#4A4A4A]">{texts.both[language]}</Label>
                     </div>
                   </RadioGroup>
+                  {errors.venueType && (
+                    <p className="text-[#D64545] text-sm">
+                      {texts.namesError[language]}
+                    </p>
+                  )}
                 </div>
               </div>
             )}
+
 
             {step === 4 && (
               <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4">
