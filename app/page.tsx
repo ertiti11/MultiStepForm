@@ -68,14 +68,23 @@ export default function Home() {
     watch,
     setValue,
   } = useForm<FormData>();
+  const privacyPolicyAccepted = watch("privacyPolicy"); // Monitorea el valor de privacyPolicy
 
   const onSubmit = async (data: FormData) => {
+    if (!privacyPolicyAccepted) {
+      toast.error(
+        language === "es"
+          ? "Debe aceptar la política de privacidad antes de enviar."
+          : "You must accept the privacy policy before submitting."
+      );
+      return; // Detiene el envío del formulario
+    }
     try {
       setLoading(true);
       console.log(data)
-      const emailResponse = await sendEmail(data);
-      console.log(emailResponse)
-
+      // const emailResponse = await sendEmail(data);
+      // console.log(emailResponse)
+      setLoading(false);
 
       toast.success(
         language === "es"
@@ -292,7 +301,17 @@ export default function Home() {
         </div>
 
         <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-lg p-8 mb-8">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={handleSubmit(onSubmit)} onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault(); // Evita el envío del formulario por defecto
+              if (step < 5) {
+                nextStep(); // Avanza al siguiente paso si no es el último
+              } else {
+                handleSubmit(onSubmit)(); // Envía el formulario si es el último paso
+              }
+            }
+          }} className="space-y-8">
+
             {step === 1 && (
               <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4">
                 <Label
@@ -410,6 +429,7 @@ export default function Home() {
                 </div>
               </div>
             )}
+            
 
             {step === 5 && (
               <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4">
@@ -502,7 +522,7 @@ export default function Home() {
                 <Button
                   type="submit"
                   className="ml-auto bg-[#A4B4A4] hover:bg-[#8A9B8A] text-white flex items-center rounded-full px-4 py-2 text-base sm:px-6 sm:py-3 sm:text-lg"
-                  disabled={loading}
+                  disabled={loading || !privacyPolicyAccepted} // Deshabilitar si no se acepta la política
                 >
                   {loading ? (
                     <>
@@ -517,10 +537,28 @@ export default function Home() {
                   )}
                 </Button>
               )}
+              {step === 6 && (
+                <div className="text-center space-y-6">
+                  <h2 className="text-2xl font-serif text-[#4A4A4A]">
+                    {texts.thankYou[language]}
+                  </h2>
+                  <p className="text-lg text-[#6B6B6B]">
+                    {texts.contactSoon[language]}
+                  </p>
+                  <Button
+                    onClick={() => setStep(1)}
+                    className="mt-4 bg-[#A4B4A4] hover:bg-[#8A9B8A] text-white px-4 py-2 rounded-lg"
+                  >
+                    {texts.backToStart[language]}
+                  </Button>
+                </div>
+              )}
+
+
             </div>
-          </form>
-        </div>
-      </div>
-    </div>
+          </form >
+        </div >
+      </div >
+    </div >
   );
 }
