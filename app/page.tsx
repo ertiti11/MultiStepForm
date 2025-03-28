@@ -29,6 +29,7 @@ type FormData = {
   guestCount: string;
   email: string;
   phone: string;
+  message: string;
   privacyPolicy: boolean;
 };
 
@@ -449,6 +450,22 @@ export default function Home() {
                       {texts.phoneError[language]}
                     </p>
                   )}
+                </div>
+
+                <div className="space-y-4">
+                  <Label
+                    htmlFor="message"
+                    className="text-lg text-[#4A4A4A] font-light"
+                  >
+                    {language === "es" ? "¡Cuentanos Sobre tu boda ideal!" : "¡Cuentanos Sobre tu boda ideal!"}
+                  </Label>
+                  <textarea
+                    id="message"
+                    {...register("message", { required: false })}
+                    className="border p-2 focus:ring-[#A4B4A4] focus:border-[#A4B4A4] rounded-xl py-3 text-lg w-full"
+                    rows={4}
+                    placeholder={language === "es" ? "Escribe tu mensaje aquí..." : "Write your message here..."}
+                  />
                 </div>
 
                 <div className="flex items-center space-x-3">

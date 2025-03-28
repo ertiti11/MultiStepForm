@@ -2,7 +2,7 @@
 
 import { Resend } from "resend";
 
-const resend = new Resend('re_fmEviVfX_PxHMyd4hAwBGJ1KAfhMYh44L');
+const resend = new Resend(process.env.customKey);
 
 export const sendEmail = async (data) => {
   try {
@@ -12,13 +12,14 @@ export const sendEmail = async (data) => {
       to: 'info@altamiranofloristas.com',
       subject: 'Nueva Solicitud de Flores para Boda / New Wedding Flower Request',
       html: `
-        <h2>Detalles de la Solicitud / Request Details:</h2>
-        <p><strong>Nombres / Names:</strong> ${data.partnerNames}</p>
-        <p><strong>Fecha / Date:</strong> ${data.weddingDate}</p>
-        <p><strong>Lugar / Venue:</strong> ${data.venueLocation}</p>
-        <p><strong>Tipo de Lugar / Venue Type:</strong> ${data.venueType}</p>
+        <h2>Detalles de la Solicitud:</h2>
+        <p><strong>Nombres:</strong> ${data.partnerNames}</p>
+        <p><strong>Fecha:</strong> ${data.weddingDate}</p>
+        <p><strong>Lugar:</strong> ${data.venueLocation}</p>
+        <p><strong>Tipo de Lugar:</strong> ${data.venueType}</p>
         <p><strong>Email:</strong> ${data.email}</p>
-        <p><strong>Teléfono / Phone:</strong> ${data.phone}</p>
+        <p><strong>Teléfono:</strong> ${data.phone}</p>
+        <p><strong>Mensaje:</strong> ${data.message}</p>
       `,
     });
     console.log("Correo enviado con éxito");
