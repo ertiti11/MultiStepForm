@@ -10,7 +10,7 @@ export const sendEmail = async (data) => {
     await resend.emails.send({
       from: 'altamirano floristas <info@altamiranofloristas.com>',
       to: 'info@altamiranofloristas.com',
-      subject: 'Nueva Solicitud de Flores para Boda / New Wedding Flower Request',
+      subject: 'Tienes una nueva Solicitud de Flores para Boda!',
       html: `
         <h2>Detalles de la Solicitud:</h2>
         <p><strong>Nombres:</strong> ${data.partnerNames}</p>

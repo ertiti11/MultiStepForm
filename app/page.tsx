@@ -69,11 +69,20 @@ export default function Home() {
     watch,
     setValue,
   } = useForm<FormData>();
+  const privacyPolicyAccepted = watch("privacyPolicy"); // Monitorea el valor de privacyPolicy
 
   const onSubmit = async (data: FormData) => {
+    if (!privacyPolicyAccepted) {
+      toast.error(
+        language === "es"
+          ? "Debe aceptar la política de privacidad antes de enviar."
+          : "You must accept the privacy policy before submitting."
+      );
+      return; // Detiene el envío del formulario
+    }
     try {
       setLoading(true);
-
+      console.log(data)
       const emailResponse = await sendEmail(data);
       console.log(emailResponse)
 
@@ -293,7 +302,17 @@ export default function Home() {
         </div>
 
         <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-lg p-8 mb-8">
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+          <form onSubmit={handleSubmit(onSubmit)} onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              e.preventDefault(); // Evita el envío del formulario por defecto
+              if (step < 5) {
+                nextStep(); // Avanza al siguiente paso si no es el último
+              } else {
+                handleSubmit(onSubmit)(); // Envía el formulario si es el último paso
+              }
+            }
+          }} className="space-y-8">
+
             {step === 1 && (
               <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4">
                 <Label
@@ -338,7 +357,6 @@ export default function Home() {
                 />
               </div>
             )}
-
             {step === 3 && (
               <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4">
                 <div className="space-y-4">
@@ -365,7 +383,7 @@ export default function Home() {
                   </Label>
                   <RadioGroup
                     defaultValue="indoor"
-                    onValueChange={(value) => setValue('venueType', value as "indoor" | "outdoor" | "both")}
+                    {...register("venueType", { required: true })} // Registrar venueType
                     className="space-y-3"
                   >
                     <div className="flex items-center space-x-3">
@@ -381,9 +399,15 @@ export default function Home() {
                       <Label htmlFor="both" className="text-[#4A4A4A]">{texts.both[language]}</Label>
                     </div>
                   </RadioGroup>
+                  {errors.venueType && (
+                    <p className="text-[#D64545] text-sm">
+                      {texts.namesError[language]}
+                    </p>
+                  )}
                 </div>
               </div>
             )}
+
 
             {step === 4 && (
               <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4">
@@ -514,7 +538,7 @@ export default function Home() {
                 <Button
                   type="submit"
                   className="ml-auto bg-[#A4B4A4] hover:bg-[#8A9B8A] text-white flex items-center rounded-full px-4 py-2 text-base sm:px-6 sm:py-3 sm:text-lg"
-                  disabled={loading}
+                  disabled={loading || !privacyPolicyAccepted} // Deshabilitar si no se acepta la política
                 >
                   {loading ? (
                     <>
@@ -529,6 +553,7 @@ export default function Home() {
                   )}
                 </Button>
               )}
+              
             </div>
           </form>
         </div>
