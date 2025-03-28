@@ -1,7 +1,7 @@
 "use client";
 
 import { Resend } from 'resend';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Calendar } from "@/components/ui/calendar";
 import { Button } from "@/components/ui/button";
@@ -17,9 +17,7 @@ import { es } from "date-fns/locale";
 import toast from "react-hot-toast";
 import Navbar from "@/components/Navbar";
 import { sendEmail } from '@/lib/resend';
-
-
-
+import { useRouter } from "next/navigation";
 
 type FormData = {
   partnerNames: string;
@@ -57,6 +55,7 @@ const guestRanges = [
 ];
 
 export default function Home() {
+  const router = useRouter(); // Hook para redirigir
   const [step, setStep] = useState(1);
   const [date, setDate] = useState<Date>();
   const [loading, setLoading] = useState(false);
@@ -69,7 +68,12 @@ export default function Home() {
     watch,
     setValue,
   } = useForm<FormData>();
-  const privacyPolicyAccepted = watch("privacyPolicy"); // Monitorea el valor de privacyPolicy
+  const privacyPolicyAccepted = watch("privacyPolicy");
+
+  // Maneja el cambio del checkbox manualmente
+  const handlePrivacyChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setValue("privacyPolicy", event.target.checked, { shouldValidate: true });
+  };
 
   const onSubmit = async (data: FormData) => {
     if (!privacyPolicyAccepted) {
@@ -82,16 +86,20 @@ export default function Home() {
     }
     try {
       setLoading(true);
-      console.log(data)
+      console.log(data);
       const emailResponse = await sendEmail(data);
-      console.log(emailResponse)
-
+      console.log(emailResponse);
 
       toast.success(
         language === "es"
           ? "¡Solicitud enviada con éxito! Revisa tu correo electrónico."
           : "Request sent successfully! Check your email."
       );
+
+      // Evita redirigir si ya estás en la página de agradecimiento
+      if (window.location.pathname !== "/gracias") {
+        router.push("/gracias"); // Redirige a la página de agradecimiento
+      }
     } catch (error) {
       toast.error(
         language === "es"
@@ -496,6 +504,7 @@ export default function Home() {
                   <Checkbox
                     id="privacy"
                     {...register("privacyPolicy", { required: true })}
+                    onChange={handlePrivacyChange} // Actualiza manualmente el valor del checkbox
                     className="text-[#A4B4A4] border-[#E8E8E8]"
                   />
                   <Label htmlFor="privacy" className="text-sm text-[#6B6B6B]">
@@ -538,7 +547,8 @@ export default function Home() {
                 <Button
                   type="submit"
                   className="ml-auto bg-[#A4B4A4] hover:bg-[#8A9B8A] text-white flex items-center rounded-full px-4 py-2 text-base sm:px-6 sm:py-3 sm:text-lg"
-                  disabled={loading || !privacyPolicyAccepted} // Deshabilitar si no se acepta la política
+                  // disabled={loading || !privacyPolicyAccepted} // Aquí se controla si el botón está deshabilitado
+                  disabled={false}
                 >
                   {loading ? (
                     <>

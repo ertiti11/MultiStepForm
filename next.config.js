@@ -12,6 +12,15 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: { unoptimized: true },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/gracias',
+  //       destination: '/gracias',
+  //       permanent: true,
+  //     },
+  //   ];
+  // },
 };
 
 module.exports = nextConfig;
