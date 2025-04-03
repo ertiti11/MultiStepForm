@@ -117,20 +117,20 @@ export default function Home() {
   const texts = {
     title: {
       es: "¡La decoración perfecta para tu evento empieza aquí!",
-      en: "Your dream wedding starts here!"
+      en: "The perfect decoration for your event starts here!"
     },
     subtitle: {
       es: '🌸Creamos ambientes llenos de encanto y elegancia para que tu "sí, quiero" sea inolvidable.',
-      en: "We design magical moments while you focus on saying 'I do'."
+      en: "🌸We create atmospheres full of charm and elegance to make your ‘I do’ unforgettable."
     },
     uniqueDay: {
       es: "💐 Desde 1990, transformamos momentos en recuerdos inolvidables. En Altamirano Floristas, diseñamos cada detalle floral con pasión y sofisticación, para que tu boda brille con luz propia. Desde el ramo hasta la decoración personalizada al detalle, nos encargamos de hacer realidad vuestra visión y guiaros en base a nuestra experiencia.",
-      en: "🕊 A unique day deserves impeccable planning."
+      en: "💐 Since 1990, we have been transforming moments into unforgettable memories. At Altamirano Floristas, we design every floral detail with passion and sophistication, so that your wedding will shine with its own light. From the bouquet to the personalised decoration in detail, we take care of making your vision come true and guide you based on our experience’."
     },
 
     formIntro: {
       es: "💌 Este formulario es el primer paso hacia una boda inolvidable. Déjanos encargarnos de cada detalle floral mientras tú disfrutas de cada instante. ",
-      en: "💌 This form is the first step towards the perfect wedding."
+      en: "💌 This form is the first step towards an unforgettable wedding. Let us take care of every floral detail while you enjoy every moment. "
     },
     names: {
       es: "¿Cómo os llamáis?",
@@ -462,7 +462,7 @@ export default function Home() {
                     htmlFor="message"
                     className="text-lg text-[#4A4A4A] font-light"
                   >
-                    {language === "es" ? "¡Cuentanos Sobre tu boda ideal!" : "¡Cuentanos Sobre tu boda ideal!"}
+                    {language === "es" ? "¡Cuéntanos sobre tu boda ideal!" : "¡Cuéntanos sobre tu boda ideal!"}
                   </Label>
                   <textarea
                     id="message"
