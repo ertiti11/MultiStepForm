@@ -116,44 +116,21 @@ export default function Home() {
 
   const texts = {
     title: {
-      es: "¡Tu boda soñada empieza aquí!",
+      es: "¡La decoración perfecta para tu evento empieza aquí!",
       en: "Your dream wedding starts here!"
     },
     subtitle: {
-      es: 'Diseñamos momentos mágicos mientras tú solo piensas en decir "sí, quiero".',
+      es: '🌸Creamos ambientes llenos de encanto y elegancia para que tu "sí, quiero" sea inolvidable.',
       en: "We design magical moments while you focus on saying 'I do'."
     },
     uniqueDay: {
-      es: "🕊 Un día único merece una planificación impecable.",
+      es: "💐 Desde 1990, transformamos momentos en recuerdos inolvidables. En Altamirano Floristas, diseñamos cada detalle floral con pasión y sofisticación, para que tu boda brille con luz propia. Desde el ramo hasta la decoración personalizada al detalle, nos encargamos de hacer realidad vuestra visión y guiaros en base a nuestra experiencia.",
       en: "🕊 A unique day deserves impeccable planning."
     },
-    uniqueDayDesc: {
-      es: "En Altamirano Floristas, nos encargamos de todo para que vivas el mejor día de tu vida sin preocupaciones. Desde el diseño de los rincones más especiales hasta la coordinación del último baile, estaremos a tu lado para que cada detalle sea perfecto.",
-      en: "At Altamirano Floristas, we take care of everything so you can live the best day of your life without worries. From designing the most special corners to coordinating the last dance, we'll be by your side to make every detail perfect."
-    },
-    unforgettableMoments: {
-      es: "✨ Momentos inolvidables, diseñados solo para ti.",
-      en: "✨ Unforgettable moments, designed just for you."
-    },
-    unforgettableMomentsDesc: {
-      es: "Imagina caminar hacia el altar con la decoración que siempre soñaste, invitados sorprendidos por cada detalle y todo fluyendo como si fuera magia. Tú relájate, ríe y baila; nosotros hacemos que todo ocurra a la perfección.",
-      en: "Imagine walking down the aisle with the decoration you've always dreamed of, guests surprised by every detail, and everything flowing as if by magic. You relax, laugh, and dance; we make everything happen perfectly."
-    },
-    stressFree: {
-      es: "🎉 La boda que siempre imaginaste, sin estrés.",
-      en: "🎉 The wedding you've always imagined, stress-free."
-    },
-    stressFreeDesc: {
-      es: "Con nuestro servicio de organización integral, gestionamos a los mejores proveedores, diseñamos la estética del evento y estamos contigo en cada paso del camino. Además, garantizamos que tú y tus invitados se lo pasarán en grande. ¡Cero preocupaciones, solo felicidad!",
-      en: "With our comprehensive organization service, we manage the best vendors, design the event's aesthetics, and are with you every step of the way. Plus, we guarantee that you and your guests will have a great time. Zero worries, just happiness!"
-    },
+
     formIntro: {
-      es: "💌 Este formulario es el primer paso hacia la boda perfecta.",
+      es: "💌 Este formulario es el primer paso hacia una boda inolvidable. Déjanos encargarnos de cada detalle floral mientras tú disfrutas de cada instante. ",
       en: "💌 This form is the first step towards the perfect wedding."
-    },
-    formIntroDesc: {
-      es: "No dejes que la planificación te agobie, nosotros lo hacemos fácil, divertido y muy especial.",
-      en: "Don't let planning overwhelm you, we make it easy, fun, and very special."
     },
     names: {
       es: "¿Cómo os llamáis?",
@@ -292,9 +269,7 @@ export default function Home() {
               <h2 className="text-xl font-serif text-[#4A4A4A] mb-2">
                 {texts.uniqueDay[language]}
               </h2>
-              <p className="text-[#6B6B6B] leading-relaxed">
-                {texts.uniqueDayDesc[language]}
-              </p>
+              
             </div>
 
 
@@ -302,9 +277,7 @@ export default function Home() {
               <h2 className="text-xl font-serif text-[#4A4A4A] mb-2">
                 {texts.formIntro[language]}
               </h2>
-              <p className="text-[#6B6B6B] leading-relaxed">
-                {texts.formIntroDesc[language]}
-              </p>
+              
             </div>
           </div>
         </div>
