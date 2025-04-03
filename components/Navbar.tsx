@@ -4,7 +4,7 @@ export default function Navbar() {
         {/* Hero estilo Notion */}
         <div className="relative w-full h-48 md:h-64">
           <img
-            src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3"
+            src="https://altamiranofloristas.com/wp-content/uploads/2025/04/59e46fd1-0cf8-4c08-b3cf-d45e958ebe1d.jpg"
             alt="Hero Altamirano Floristas"
             className="w-full h-full object-cover"
           />
