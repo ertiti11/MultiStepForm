@@ -504,7 +504,6 @@ export default function Home() {
                   <Checkbox
                     id="privacy"
                     {...register("privacyPolicy", { required: true })}
-                    onChange={handlePrivacyChange} // Actualiza manualmente el valor del checkbox
                     className="text-[#A4B4A4] border-[#E8E8E8]"
                   />
                   <Label htmlFor="privacy" className="text-sm text-[#6B6B6B]">
